@@ -1,11 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body { @apply bg-gray-50 text-gray-900; }
-.container { @apply max-w-6xl mx-auto p-4 sm:p-6; }
-.nav { @apply flex gap-4 items-center; }
-.card { @apply bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6; }
-.btn { @apply inline-flex items-center px-4 py-2 rounded-xl border border-gray-300; }
-.btn-primary { @apply bg-brand text-white border-brand; }
-.badge { @apply px-2 py-0.5 rounded-full text-xs font-medium; }
+html,body{margin:0;padding:0;font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.card{border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin:12px 0}
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;border:1px solid #111;cursor:pointer}
+.btn-primary{background:#111;color:#fff}
+.small{color:#666;font-size:12px}
+.grid{display:grid;grid-gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+header{border-bottom:1px solid #eee;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.user{font-size:12px;color:#444}
+input,select{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:8px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}

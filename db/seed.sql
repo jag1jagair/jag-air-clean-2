@@ -1,1 +1,1 @@
-update aircraft set photo_url = '/images/placeholder.png';
+-- No-op seed; passengers will be added by users in the app UI.
