@@ -34,32 +34,48 @@ export default function NewFlightPage() {
   };
 
   return (
-    <div>
-      <h1>Request a Flight</h1>
-      <div className="card">
-        <label>Aircraft</label><br/>
-        <select value={tail} onChange={e=>setTail(e.target.value)} style={{width:'100%', padding:10, margin:'8px 0'}}>
+    <div className="max-w-xl mx-auto card space-y-3">
+      <h1 className="text-lg font-semibold">Request a Flight</h1>
+      <div>
+        <label className="text-sm">Aircraft</label>
+        <select value={tail} onChange={e=>setTail(e.target.value)} className="w-full border rounded-xl p-2 mt-1">
           <option value="">Pick a tail</option>
           {aircraft.map(a => <option key={a.id} value={a.tail}>{a.tail}</option>)}
         </select>
-        <label>Departure (ICAO)</label>
-        <input value={dep} onChange={e=>setDep(e.target.value)} style={{width:'100%', padding:10, margin:'8px 0'}} />
-        <label>Arrival (ICAO)</label>
-        <input value={arr} onChange={e=>setArr(e.target.value)} style={{width:'100%', padding:10, margin:'8px 0'}} />
-        <label>Start (UTC ISO)</label>
-        <input value={start} onChange={e=>setStart(e.target.value)} placeholder="2025-08-10T15:00:00Z" style={{width:'100%', padding:10, margin:'8px 0'}} />
-        <label>End (UTC ISO)</label>
-        <input value={end} onChange={e=>setEnd(e.target.value)} placeholder="2025-08-10T19:00:00Z" style={{width:'100%', padding:10, margin:'8px 0'}} />
-        <div style={{margin:'8px 0'}}>
-          <label><input type="checkbox" checked={whole} onChange={e=>setWhole(e.target.checked)} /> Whole aircraft</label>
-        </div>
-        <label>Lead Passenger Name</label>
-        <input value={paxName} onChange={e=>setPaxName(e.target.value)} style={{width:'100%', padding:10, margin:'8px 0'}} />
-        <label>US Stay Address (if applicable)</label>
-        <input value={usAddress} onChange={e=>setUsAddress(e.target.value)} style={{width:'100%', padding:10, margin:'8px 0'}} />
-        <button className="btn btn-primary" onClick={submit}>Submit Request</button>
-        {status && <div style={{marginTop:10}} className="small">{status}</div>}
       </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="text-sm">Departure (ICAO)</label>
+          <input value={dep} onChange={e=>setDep(e.target.value)} className="w-full border rounded-xl p-2 mt-1" />
+        </div>
+        <div>
+          <label className="text-sm">Arrival (ICAO)</label>
+          <input value={arr} onChange={e=>setArr(e.target.value)} className="w-full border rounded-xl p-2 mt-1" />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="text-sm">Start (UTC ISO)</label>
+          <input value={start} onChange={e=>setStart(e.target.value)} placeholder="2025-08-10T15:00:00Z" className="w-full border rounded-xl p-2 mt-1" />
+        </div>
+        <div>
+          <label className="text-sm">End (UTC ISO)</label>
+          <input value={end} onChange={e=>setEnd(e.target.value)} placeholder="2025-08-10T19:00:00Z" className="w-full border rounded-xl p-2 mt-1" />
+        </div>
+      </div>
+      <label className="inline-flex items-center gap-2">
+        <input type="checkbox" checked={whole} onChange={e=>setWhole(e.target.checked)} /> Whole aircraft
+      </label>
+      <div>
+        <label className="text-sm">Lead Passenger Name</label>
+        <input value={paxName} onChange={e=>setPaxName(e.target.value)} className="w-full border rounded-xl p-2 mt-1" />
+      </div>
+      <div>
+        <label className="text-sm">US Stay Address (if applicable)</label>
+        <input value={usAddress} onChange={e=>setUsAddress(e.target.value)} className="w-full border rounded-xl p-2 mt-1" />
+      </div>
+      <button className="btn btn-primary w-full" onClick={submit}>Submit Request</button>
+      {status && <div className="text-sm text-gray-600">{status}</div>}
     </div>
   );
 }

@@ -39,18 +39,19 @@ export default function Approvals() {
   };
 
   return (
-    <div>
-      <h1>Approvals</h1>
-      <p className="small">Manager only (DB security restricts writes to Manager).</p>
-      {err && <div className="card" style={{borderColor:'red', color:'red'}}>{err}</div>}
+    <div className="grid gap-3">
+      <h1 className="text-lg font-semibold">Approvals</h1>
+      {err && <div className="card border-red-300 text-red-700">{err}</div>}
       {flights.length === 0 && <div className="card">No pending requests.</div>}
       {flights.map(f => (
         <div key={f.id} className="card">
-          <div><b>{f.dep}</b> → <b>{f.arr}</b></div>
-          <div className="small">{new Date(f.start_time).toLocaleString()} to {new Date(f.end_time).toLocaleString()}</div>
-          <div className="small">Type: {f.whole_aircraft ? 'Whole aircraft' : 'Seat-sharing'}</div>
-          <div className="small">Priority: {f.priority_flag || 'NONE'} {f.inside_min_notice ? '(Inside 24h)' : ''}</div>
-          <div style={{display:'flex', gap:8, marginTop:8}}>
+          <div className="flex items-center justify-between">
+            <div className="font-medium">{f.dep} → {f.arr}</div>
+            <div className="text-xs text-gray-500">{new Date(f.start_time).toLocaleString()} – {new Date(f.end_time).toLocaleString()}</div>
+          </div>
+          <div className="text-xs text-gray-600 mt-1">Type: {f.whole_aircraft ? 'Whole aircraft' : 'Seat-sharing'}</div>
+          <div className="text-xs text-gray-600">Priority: {f.priority_flag || 'NONE'} {f.inside_min_notice ? '(Inside 24h)' : ''}</div>
+          <div className="flex gap-2 mt-3">
             <button disabled={busy} className="btn btn-primary" onClick={() => updateStatus(f.id, 'APPROVED')}>Approve</button>
             <button disabled={busy} className="btn" onClick={() => updateStatus(f.id, 'DECLINED')}>Decline</button>
           </div>
