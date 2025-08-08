@@ -1,11 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [magicSent, setMagicSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setLoggedIn(!!data.user));
+  }, []);
 
   const onLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,13 +19,17 @@ export default function AuthPage() {
     if (error) setError(error.message); else setMagicSent(true);
   };
 
+  if (loggedIn) {
+    return <div className="card">You are already logged in. <a className="btn btn-primary" href="/">Go to dashboard</a></div>;
+  }
+
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Log In</h1>
       {!magicSent ? (
         <form onSubmit={onLogin} className="card">
           <label>Email</label>
-          <input value={email} onChange={e => setEmail(e.target.value)} placeholder="you@jagair.mx" />
+          <input value={email} onChange={e => setEmail(e.target.value)} placeholder="you@jagair.mx" style={{width:'100%', padding:10, margin:'8px 0'}} />
           <button className="btn btn-primary" type="submit">Send Magic Link</button>
         </form>
       ) : (

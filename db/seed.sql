@@ -1,1 +1,1 @@
--- No-op seed; passengers will be added by users in the app UI.
+-- No seed changes needed for this UI patch.

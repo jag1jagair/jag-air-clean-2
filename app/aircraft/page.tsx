@@ -14,15 +14,15 @@ export default async function AircraftPage() {
     <div>
       <h1>Aircraft</h1>
       {data?.map((a:any) => (
-        <div key={a.id} className="card" style={{display:'flex', gap:12, alignItems:'center'}}>
-          <img src={a.photo_url || '/placeholder.svg'} alt={a.tail} style={{width:96, height:64, objectFit:'cover', borderRadius:8, border:'1px solid #eee'}} />
+        <div key={a.id} className="card" style={{display:'flex', alignItems:'center', gap:12}}>
+          <img src={a.photo_url || '/logo_jag.svg'} alt={a.tail} style={{width:96, height:54, objectFit:'cover', borderRadius:8, border:'1px solid #e5e7eb'}} />
           <div style={{flex:1}}>
-            <div><b>{a.tail}</b> • Seats: {a.seats} • Base: {a.base_airport}</div>
+            <b>{a.tail}</b> • Seats: {a.seats} • Base: {a.base_airport}
             <div className="small">Seat sharing: {a.seat_sharing_enabled ? 'Enabled' : 'Disabled'}</div>
           </div>
-          <Link className="btn" href={`/flights/new?tail=${a.tail}`}>Book</Link>
         </div>
       ))}
+      <Link className="btn btn-primary" href="/flights/new">Book a Flight</Link>
     </div>
   );
 }
