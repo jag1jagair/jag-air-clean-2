@@ -1,1 +1,0 @@
-export default function Page(){return(<div style={{padding:16}}><h1>JAG Air</h1><p>If you see this, the build works.</p></div>)}
